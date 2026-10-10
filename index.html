@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>反诈 AI 客服实战大屏 · 左中右三区</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div id="viewport">
+  <div id="stage">
+
+    <!-- ============ 顶栏 ============ -->
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-badge"></div>
+        <div>
+          <div class="brand-title">涉诈 APP 全链路智能取证系统</div>
+          <div class="brand-sub">ANTI-FRAUD · AI AGENT OPS CONSOLE</div>
+        </div>
+      </div>
+      <div class="screen-title">
+        <h1>反 诈 A I 客 服 实 战 大 屏</h1>
+        <div class="title-en">Download · Confrontation · Payment Code Interception</div>
+      </div>
+      <div class="topbar-right">
+        <div class="clock">
+          <div class="clock-time" id="clockTime">--:--:--</div>
+          <div class="clock-date" id="clockDate">----年--月--日 星期--</div>
+        </div>
+        <button class="icon-btn" id="btnSettings" title="数据源设置">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- ============ 全局 KPI ============ -->
+    <!-- <div class="kpi-strip" id="kpiStrip">
+      <div class="kpi k-cyan">
+        <div class="kpi-num" data-kpi="urls">288,725</div>
+        <div class="kpi-meta"><div class="kpi-label">今日网址下发记录</div><div class="kpi-note">源头B · v4实测 A级</div></div>
+      </div>
+      <div class="kpi k-amber">
+        <div class="kpi-num" data-kpi="pages">9,600</div>
+        <div class="kpi-meta"><div class="kpi-label">真正产出 APK 页面</div><div class="kpi-note">区间 7,100~12,800 · B级</div></div>
+      </div>
+      <div class="kpi k-red">
+        <div class="kpi-num" data-kpi="apps">7</div>
+        <div class="kpi-meta"><div class="kpi-label">今日不同 App（主流款）</div><div class="kpi-note">稀缺口径 · 个位数/天</div></div>
+      </div>
+      <div class="kpi k-green">
+        <div class="kpi-num" data-kpi="devices">6</div>
+        <div class="kpi-meta"><div class="kpi-label">在线对线设备</div><div class="kpi-note">真机 3 · 模拟器 3</div></div>
+      </div>
+      <div class="kpi k-purple">
+        <div class="kpi-num" data-kpi="codes">20</div>
+        <div class="kpi-meta"><div class="kpi-label">已套取转款码记录</div><div class="kpi-note">19 个取证任务 · 真实样本</div></div>
+      </div>
+    </div> -->
+
+    <!-- ============ 三栏 ============ -->
+    <main class="grid" id="mainGrid">
+
+      <!-- —— 左区 · APP 下载 —— -->
+      <section class="pane" id="paneLeft">
+        <!-- 下载源统计 -->
+        <div class="panel auto" style="flex-basis:200px">
+          <div class="panel-head"><span class="ph-bar"></span><h3>下 载 源 统 计</h3><span class="ph-spacer"></span><span class="lamp"><i></i>实时</span></div>
+          <div class="panel-body" id="srcStatsBody" style="padding:10px 12px"></div>
+        </div>
+        <!-- APK 分类分布 -->
+        <div class="panel auto" style="flex-basis:150px">
+          <div class="panel-head"><span class="ph-bar"></span><h3>APK 分 类 分 布</h3><span class="ph-spacer"></span><span class="ph-sub">近24h 入库样本</span></div>
+          <div class="panel-body">
+            <div class="chart-box" id="catChart"></div>
+          </div>
+        </div>
+        <!-- APK 实时下载流 -->
+        <div class="panel grow">
+          <div class="panel-head"><span class="ph-bar"></span><h3>APK 实 时 下 载 流</h3><span class="ph-spacer"></span>
+            <span class="lamp" id="lampSrcA"><i></i>源头A SFTP</span>
+            <span style="width:10px"></span>
+            <span class="lamp amber" id="lampSrcB"><i></i>源头B HOST爬取</span>
+          </div>
+          <div class="panel-body flush">
+            <div class="stream"><div class="stream-scroll" id="dlStream"></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- —— 中区 · 对线聊天 —— -->
+      <section class="pane" id="paneCenter">
+        <div class="panel auto" style="flex-basis:408px">
+          <div class="panel-head"><span class="ph-bar"></span><h3>AI 客 服 对 线 画 面 墙</h3><span class="ph-spacer"></span>
+            <span class="ph-sub" id="wallSummary">真机 3 · 模拟器 3</span>
+            <span style="width:10px"></span>
+            <span class="lamp"><i></i>内存缓存 · 毫秒级</span>
+          </div>
+          <div class="panel-body flush" style="position:static">
+            <div class="device-wall" id="deviceWall"></div>
+          </div>
+        </div>
+        <div class="panel grow">
+          <div class="panel-head"><span class="ph-bar"></span><h3>实 时 对 线 日 志</h3><span class="ph-spacer"></span>
+            <span class="ph-sub" id="logEndpoint">SSE · /api/logs</span>
+            <span style="width:10px"></span>
+            <span class="lamp" id="lampLog"><i></i><span id="logState">已连接</span></span>
+          </div>
+          <div class="panel-body flush">
+            <div class="log-wrap"><div class="log-scroll" id="logScroll"></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- —— 右区 · 转款码 —— -->
+      <section class="pane" id="paneRight">
+        <!-- 取证成果 -->
+        <div class="panel auto" style="flex-basis:180px">
+          <div class="panel-head"><span class="ph-bar"></span><h3>取 证 成 果</h3><span class="ph-spacer"></span><span class="ph-sub">2026-09-28 批次</span></div>
+          <div class="panel-body" style="padding:8px 10px">
+            <div class="r-kpis">
+              <div class="r-kpi k1"><b data-rkpi="cumTotal">0</b><span>累计二维码数</span></div>
+              <div class="r-kpi k2"><b data-rkpi="cumDedup">0</b><span>累计去重二维码数</span></div>
+              <div class="r-kpi k3"><b data-rkpi="todayTotal">0</b><span>今日二维码数</span></div>
+              <div class="r-kpi k4"><b data-rkpi="todayDedup">0</b><span>今日去重二维码数</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 转款码实时输出墙 -->
+        <div class="panel grow">
+          <div class="panel-head"><span class="ph-bar"></span><h3>转 款 码 实 时 输 出 墙</h3><span class="ph-spacer"></span>
+            <span class="lamp"><i></i>滚动中 · 悬停暂停</span>
+          </div>
+          <div class="panel-body flush">
+            <div class="wall" id="codeWall"><div class="wall-track" id="wallTrack"></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 栏间流向 -->
+      <div class="flow-arrow fa-1"><div class="fa-line"></div><div class="fa-tri"></div></div>
+      <div class="flow-arrow fa-2"><div class="fa-line"></div><div class="fa-tri"></div></div>
+    </main>
+  </div>
+</div>
+
+<!-- ============ 详情弹窗 ============ -->
+<div class="overlay" id="detailOverlay"></div>
+<div class="modal" id="detailModal" role="dialog" aria-modal="true" aria-label="转款码取证详情">
+  <div class="modal-head">
+    <h3 id="detailTitle">取证详情</h3>
+    <span class="sp"></span>
+    <button class="modal-close" id="detailClose" aria-label="关闭">✕</button>
+  </div>
+  <div class="modal-body">
+    <div class="detail-grid">
+      <div class="detail-col">
+        <div class="dc-head"><span class="n">1</span>APK 信 息</div>
+        <div class="dc-body" id="detailInfo"></div>
+      </div>
+      <div class="detail-col">
+        <div class="dc-head"><span class="n">2</span>中 间 取 证 图（对线过程截图）</div>
+        <div class="dc-body" style="flex:1;min-height:0">
+          <div class="shot-stage" id="shotStage"></div>
+          <div class="shot-thumbs" id="shotThumbs"></div>
+        </div>
+      </div>
+      <div class="detail-col">
+        <div class="dc-head"><span class="n">3</span>转 款 码</div>
+        <div class="dc-body" id="detailCode"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 数据源设置 ============ -->
+<div class="overlay" id="settingsOverlay"></div>
+<div class="modal settings-modal" id="settingsModal" role="dialog" aria-modal="true" aria-label="数据源设置">
+  <div class="modal-head">
+    <h3>数 据 源 设 置</h3>
+    <span class="sp"></span>
+    <button class="modal-close" id="settingsClose" aria-label="关闭">✕</button>
+  </div>
+  <div class="modal-body">
+    <div class="field">
+      <label>数据模式</label>
+      <div class="seg" id="modeSeg">
+        <button data-mode="mock" class="active">模拟数据（演示）</button>
+        <button data-mode="real">真实接口（中控）</button>
+      </div>
+    </div>
+    <div class="field">
+      <label>设备中控 Base URL（CatDevicePlatform）</label>
+      <input type="text" id="baseUrl" value="http://192.168.0.109:8080" spellcheck="false">
+    </div>
+    <div class="field">
+      <label>实时日志 SSE 地址</label>
+      <input type="text" id="sseUrl" value="http://192.168.0.109:8080/api/logs" spellcheck="false">
+    </div>
+    <div class="warn-box">
+      真实接口注意：① 中控需允许浏览器跨域（CORS）；② 截图接口 <code>GET /api/v1/devices/{id}/screenshot</code> 返回 PNG，<code>444</code> 表示在线暂无图像；③ <b>SSE 严禁经过未开启流式（StreamBody/ImmediateHeaderFlush）的反向代理</b>——否则会被缓冲到 EOF 才转发，前端 8 秒收不到一条，请直连后端地址。
+    </div>
+    <div class="conn-status" id="connStatus"></div>
+  </div>
+</div>
+
+<script src="assets/vendor/echarts.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/core/format.js"></script>
+<script src="js/mock/data.js"></script>
+<script src="js/mock/stream.js"></script>
+<script src="js/api/devices.js"></script>
+<script src="js/api/logs.js"></script>
+<script src="js/charts/funnel.js"></script>
+<script src="js/charts/channel-donut.js"></script>
+<script src="js/components/header.js"></script>
+<script src="js/components/left-panel.js"></script>
+<script src="js/components/center-panel.js"></script>
+<script src="js/components/right-panel.js"></script>
+<script src="js/components/detail-modal.js"></script>
+<script src="js/components/settings.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
